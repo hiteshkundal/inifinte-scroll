@@ -2,9 +2,9 @@
     padding: 16px;
     a{
         text-decoration: none;
-        color: #003569;
+        color: var(--primary-link-color);
         &:hover{
-            color: blue;
+            color: var(--primary-toggle-color);
         }
     }
     p{

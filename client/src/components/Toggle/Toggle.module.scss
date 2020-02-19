@@ -1,0 +1,43 @@
+.ThemeSwitch {
+    height: 34px;
+    width: 60px;
+    position: relative;
+    input{
+      display: none;
+    }
+    .Slider {
+      background-color: #ccc;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      border-radius: 34px;
+      cursor: pointer;
+      transition: .4s;
+      &::before{
+        content: "";
+        background-color: #fff;
+        position: absolute;
+        height: 26px;
+        width: 26px;
+        bottom: 4px;
+        left: 4px;
+        border-radius: 50%;
+        transition: .4s;
+      }
+    }
+  }
+  
+  
+ 
+ input:checked + .Slider {
+    background-color: var(--primary-bg-color);
+  }
+  
+  input:checked + .Slider:before {
+    transform: translateX(26px);
+  }
+  
+
+  

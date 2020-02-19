@@ -1,6 +1,6 @@
 .Header{
-    background-color: rgba(var(--cdc,255,255,255),1);
-    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+    background-color: var(--secondary-bg-color);
+    border-bottom: 1px solid var(--primary-border-color);
     position: fixed;
     top: 0px;
     width: 100%;
@@ -8,23 +8,28 @@
     display: flex;
     align-items: center;
     transition: height .2s ease-in-out;
-    .Logo{
-       margin: auto;
-        max-width: 95vw;
-        width: 700px;
-        display: flex;
-        align-items: center;
-        div{
-            display: inline-block;
+    .InnerContainer{
+         margin: auto;
+         max-width: 95vw;
+         width: 700px;
+         display: flex;
+         justify-content:space-between;
+        .Logo{
+            display: flex;
+            img{
+                margin-right: 10px;
+            }
+         div{
             width: 1px;
             height: 30px;
-            background-color: black;
-            margin: 10px;
+            border: 1px solid var(--primary-filler-color)
+         }
+         h2{
+             margin-left: 10px;
+         }
         }
     }
-    .HeaderShrink{
-        width: 52px;
-    }
+   
 }
 
 .HeaderShrink{

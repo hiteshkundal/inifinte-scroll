@@ -28,34 +28,12 @@ const Feed = () => {
 
     }, [pageNumber])
 
+
     const lastImageObserver = useRef();
-
-    //<---------bad version of callback---------->
-    // const lastImageRef = ((node) => {
-    //     if (loading) {
-    //         return;
-    //     }
-    //     if (lastImageObserver.current) {
-    //         lastImageObserver.current.disconnect();
-    //     }
-    //     lastImageObserver.current = new IntersectionObserver((entries) => {
-    //         if (entries[0].isIntersecting) {
-    //             setPageNumber((prevPage) => prevPage + 1)
-    //         }
-    //     })
-
-    //     if (node) {
-    //         lastImageObserver.current.observe(node);
-    //     }
-    // });
-    //<----------------------------------------------->
 
     const lastImageRef = useCallback((node) => {
         if (loading) {
             return;
-        }
-        if (lastImageObserver.current) {
-            lastImageObserver.current.disconnect();
         }
         lastImageObserver.current = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
@@ -66,29 +44,21 @@ const Feed = () => {
         if (node) {
             lastImageObserver.current.observe(node);
         }
+        return () => lastImageObserver.current.disconnect();
     }, [loading]);
 
 
     return (
         <article className={style.Feed}>
             {images.map((photo, index) => {
-                if (index === images.length - 1) {
-                    return <Post key={photo._id}
-                        ref={lastImageRef}
-                        imageUrl={photo.src.large2x}
-                        profileImg={photo.src.tiny}
-                        authorName={photo.photographer}
-                        photographerUrl={photo.photographer_url}
-                    />
-                } else {
-                    return <Post key={photo._id}
-                        imageUrl={photo.src.large2x}
-                        profileImg={photo.src.tiny}
-                        authorName={photo.photographer}
-                        photographerUrl={photo.photographer_url}
-                    />
-                }
-
+                return <Post
+                    key={photo._id}
+                    ref={index === images.length - 1 ? lastImageRef : null}
+                    imageUrl={photo.src.large2x}
+                    profileImg={photo.src.tiny}
+                    authorName={photo.photographer}
+                    photographerUrl={photo.photographer_url}
+                />
             })}
             {loading && <Loader />}
             {error && <Error />}

@@ -16,9 +16,14 @@ app.use('/', (req, res, next) => {
 app.use(express.json());
 app.use(appRouter);
 
+try {
+    setInterval(() => {
+        storeImages();
+    }, 1 * 60 * 60 * 1000);
+} catch (err) {
+    console.log(err);
+}
 
-
-// storeImages();
 
 app.listen(serverPort, () => {
     console.log(`Server is listening at port ${serverPort}`)
