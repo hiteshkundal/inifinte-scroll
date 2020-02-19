@@ -1,0 +1,14 @@
+.PostFooter{
+    padding: 16px;
+    a{
+        text-decoration: none;
+        color: #003569;
+        &:hover{
+            color: blue;
+        }
+    }
+    p{
+        text-transform: lowercase;
+        font-weight: 400;
+    }
+}

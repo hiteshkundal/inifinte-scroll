@@ -1,0 +1,18 @@
+{
+    "name": "infinite_scrolling_root",
+    "version": "1.0.0",
+    "description": "An infinte scrolling based inspired by Instagram feed",
+    "main": "index.js",
+    "private": true,
+    "workspaces": [
+        "client",
+        "server"
+    ],
+    "scripts": {
+        "client": "yarn workspace client start",
+        "server": "yarn workspace server start"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT"
+}

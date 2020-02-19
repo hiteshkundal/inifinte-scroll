@@ -1,0 +1,27 @@
+.PostHeader{
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    div{
+        height: 42px;
+        width: 42px;
+        border: 1px solid rgb(219, 219, 219);
+        border-radius: 50%;
+        img{
+            width: 36px;
+            height: 36px;
+            object-fit: cover;
+            border-radius: 50%;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+        }
+    }
+    p{
+        margin-left: 10px;
+        text-transform: lowercase;
+        font-weight: 500;
+    }
+}
