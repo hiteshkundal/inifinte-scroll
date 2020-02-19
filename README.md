@@ -6,4 +6,4 @@
 - CSS variables
 - Custom data attributes
 
-### Live Demo (here)[https://infinitescroll-hitesh.netlify.com/]
+### Live Demo [here](https://infinitescroll-hitesh.netlify.com/)
