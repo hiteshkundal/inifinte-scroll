@@ -1,6 +1,6 @@
 # Infinite Scroll with Dark Mode
 
-## Learings
+## Learnings
 - Intersection observer API
 - Theme toggle
 - CSS variables
