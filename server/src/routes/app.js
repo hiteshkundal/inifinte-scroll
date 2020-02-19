@@ -3,6 +3,10 @@ const mongodbConnection = require('../mongodb');
 
 const appRouter = express.Router();
 
+appRouter.get('/', (req, res) => {
+    res.send('Hello');
+})
+
 appRouter.get('/images/:id', async (req, res) => {
     const reqParams = req.params.id;
     const skipIndex = (reqParams - 1) * 3;
