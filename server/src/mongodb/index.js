@@ -2,7 +2,6 @@ const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const envVariable = require('../envVariable');
 const uri = `mongodb+srv://hiteshkundal:${envVariable.MONGODB_PASSWORD}@cluster0-llyfn.mongodb.net/test?retryWrites=true&w=majority`;
-
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 

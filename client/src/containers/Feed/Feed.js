@@ -12,10 +12,15 @@ const Feed = () => {
     const [pageNumber, setPageNumber] = useState(1);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [available, setAvailable] = useState(true);
 
     useEffect(() => {
         setLoading(true);
         setError(false);
+        if(pageNumber === 16) {
+            setAvailable(false);
+            return;
+        }
         fetchImages(pageNumber)
             .then((fetchedImages) => {
                 setImages((prevImages) => [...prevImages, ...fetchedImages])
@@ -35,6 +40,10 @@ const Feed = () => {
         if (loading) {
             return;
         }
+        if(pageNumber === 16) {
+            setAvailable(false);
+        }
+       
         lastImageObserver.current = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
                 setPageNumber((prevPage) => prevPage + 1)
@@ -44,8 +53,8 @@ const Feed = () => {
         if (node) {
             lastImageObserver.current.observe(node);
         }
-        return () => lastImageObserver.current.disconnect();
-    }, [loading]);
+        return () =>  lastImageObserver.current.disconnect();
+    }, [loading, pageNumber]);
 
 
     return (
@@ -60,7 +69,7 @@ const Feed = () => {
                     photographerUrl={photo.photographer_url}
                 />
             })}
-            {loading && <Loader />}
+            {loading && available &&  <Loader />}
             {error && <Error />}
         </article>
     )
