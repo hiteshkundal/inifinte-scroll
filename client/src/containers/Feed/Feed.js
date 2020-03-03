@@ -6,7 +6,6 @@ import Error from '../../components/Error/Error';
 
 import style from './Feed.module.scss';
 
-
 const Feed = () => {
     const [images, setImages] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
@@ -17,10 +16,12 @@ const Feed = () => {
     useEffect(() => {
         setLoading(true);
         setError(false);
+
         if(pageNumber === 16) {
             setAvailable(false);
             return;
         }
+    
         fetchImages(pageNumber)
             .then((fetchedImages) => {
                 setImages((prevImages) => [...prevImages, ...fetchedImages])
@@ -30,7 +31,7 @@ const Feed = () => {
                 setError(true)
                 console.log(err);
             })
-
+            
     }, [pageNumber])
 
 
@@ -40,22 +41,26 @@ const Feed = () => {
         if (loading) {
             return;
         }
+
         if(pageNumber === 16) {
             setAvailable(false);
         }
-       
+
+        if(lastImageObserver.current) {
+            lastImageObserver.current.disconnect();
+       }
+
         lastImageObserver.current = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
                 setPageNumber((prevPage) => prevPage + 1)
             }
         })
-
+        
         if (node) {
             lastImageObserver.current.observe(node);
         }
-        return () =>  lastImageObserver.current.disconnect();
-    }, [loading, pageNumber]);
 
+    }, [loading, pageNumber]);
 
     return (
         <article className={style.Feed}>

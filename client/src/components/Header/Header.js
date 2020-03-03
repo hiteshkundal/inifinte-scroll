@@ -11,7 +11,7 @@ const Header = () => {
 
     useEffect(() => {
         const theme = localStorage.getItem('theme');
-        console.log(theme);
+
         if (theme) {
             document.documentElement.setAttribute('data-theme', theme);
             if (theme === 'dark') {
@@ -39,7 +39,6 @@ const Header = () => {
         } else if (window.scrollY === 0) {
             setChangeHeight(false)
         }
-
     })
 
     const toggleHandle = () => {

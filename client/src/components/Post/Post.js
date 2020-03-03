@@ -6,16 +6,18 @@ import PostFooter from './PostFooter/PostFooter';
 import style from './Post.module.scss';
 
 const Post = React.forwardRef((props, ref) => {
+    const {profileImg, authorName, imageUrl, photographerUrl} = props;
+    
     return (
         <div className={style.Post}>
             <PostHeader
-                profileImg={props.profileImg}
-                authorName={props.authorName}
+                profileImg={profileImg}
+                authorName={authorName}
             />
-            <PostImg imageUrl={props.imageUrl} ref={ref} />
+            <PostImg imageUrl={imageUrl} ref={ref} />
             <PostFooter
-                authorName={props.authorName}
-                photographerUrl={props.photographerUrl} />
+                authorName={authorName}
+                photographerUrl={photographerUrl} />
         </div>
     )
 })
